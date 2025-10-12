@@ -46,30 +46,6 @@ jobs:
           pip install dbt-core dbt-databricks
           pip install -r requirements.txt
 
-      - name: Generate profiles.yml
-        env:
-          DATABRICKS_CATALOG: ${{ secrets.DATABRICKS_CATALOG }}
-          DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
-          DATABRICKS_HTTP_PATH: ${{ secrets.DATABRICKS_HTTP_PATH }}
-          DATABRICKS_SCHEMA: ${{ secrets.DATABRICKS_SCHEMA }}
-          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
-        run: |
-          source venv/bin/activate
-          mkdir -p ~/.dbt
-          cat > ~/.dbt/profiles.yml <<EOF
-          dbt_transform:
-            outputs:
-              dev:
-                catalog: ${{ secrets.DATABRICKS_CATALOG }}
-                host: ${{ secrets.DATABRICKS_HOST }}
-                http_path: ${{ secrets.DATABRICKS_HTTP_PATH }}
-                schema: ${{ secrets.DATABRICKS_SCHEMA }}
-                threads: 6
-                token: ${{ secrets.DATABRICKS_TOKEN }}
-                type: databricks
-            target: dev
-          EOF
-
       - name: Run dbt build
         run: |
           source venv/bin/activate
