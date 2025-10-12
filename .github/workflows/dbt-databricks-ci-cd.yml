@@ -53,9 +53,3 @@ jobs:
         run: |
           source venv/bin/activate
           dbt build
-          echo "dbt-databricks build completed."
-
-      - name: Job summary
-        run: echo "dbt-databricks CI/CD completed successfully."
-              
-
