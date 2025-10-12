@@ -1,0 +1,6 @@
+locations:
+- build:
+    directory: ./dagster_orchestrate
+  code_source:
+    module_name: dagster_orchestrate.definitions
+  location_name: dagster_orchestrate
