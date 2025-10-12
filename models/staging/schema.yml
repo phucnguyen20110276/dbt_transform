@@ -1,0 +1,83 @@
+version: 2
+
+models:
+  - name: stg_customer
+    description: "Customer information and details"
+    columns:
+      - name: customer_key
+        description: "Unique identifier for each customer"
+        data_tests:
+          - unique
+          - not_null
+      - name: nation_key
+        description: "Foreign key reference to the customer nationality"
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('stg_nation')
+              field: nation_key
+      - name: market_segmentation
+        description: "Customer market segmentation"
+        data_tests:
+          - not_null
+
+  - name: stg_nation
+    description: "Nations/countries grouped by geographic region"
+    columns:
+      - name: nation_key
+        description: "Unique identifier for each nation"
+        data_tests:
+          - unique
+          - not_null
+      - name: nation_name
+        description: "Name of the nation/country"
+        data_tests:
+          - not_null
+      - name: region_key
+        description: "Foreign key reference to the region containing this nation"
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('stg_region')
+              field: region_key
+
+  - name: stg_region
+    description: "Geographic regions containing multiple nations"
+    columns:
+      - name: region_key
+        description: "Unique identifier for each region"
+        data_tests:
+          - unique
+          - not_null
+      - name: region_name
+        description: "Name of the geographic region"
+        data_tests:
+          - not_null
+
+  - name: stg_orders
+    description: "Customer orders containing order details and pricing"
+    columns:
+      - name: order_key
+        description: "Unique identifier for each order"
+        data_tests:
+          - unique
+          - not_null
+      - name: customer_key
+        description: "Foreign key reference to the customer who placed the order"
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('stg_customer')
+              field: customer_key
+      - name: order_status
+        description: "The status of the orders; O: Open, F: Filled, P: Pending"
+        data_tests:
+          - not_null
+      - name: total_price
+        description: "Total price of the order including all line items"
+        data_tests:
+          - not_null
+      - name: order_date
+        description: "Date of the order, formatted as YYYY-MM-DD"
+        data_tests:
+          - not_null
