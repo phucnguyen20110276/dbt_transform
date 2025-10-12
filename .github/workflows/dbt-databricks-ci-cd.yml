@@ -60,12 +60,12 @@ jobs:
           dbt_transform:
             outputs:
               dev:
-                catalog: "{{ env_var('DATABRICKS_CATALOG') }}"
-                host: "{{ env_var('DATABRICKS_HOST') }}"
-                http_path: "{{ env_var('DATABRICKS_HTTP_PATH') }}"
-                schema: "{{ env_var('DATABRICKS_SCHEMA') }}"
+                catalog: ${{ secrets.DATABRICKS_CATALOG }}
+                host: ${{ secrets.DATABRICKS_HOST }}
+                http_path: ${{ secrets.DATABRICKS_HTTP_PATH }}
+                schema: ${{ secrets.DATABRICKS_SCHEMA }}
                 threads: 6
-                token: "{{ env_var('DATABRICKS_TOKEN') }}"
+                token: ${{ secrets.DATABRICKS_TOKEN }}
                 type: databricks
             target: dev
           EOF
