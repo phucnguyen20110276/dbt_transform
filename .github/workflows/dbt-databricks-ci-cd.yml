@@ -6,6 +6,18 @@ on:
       - main
     paths-ignore:
       - '**.md'
+  workflow_call:
+    secrets:
+      DATABRICKS_CATALOG:
+        required: true
+      DATABRICKS_HOST:
+        required: true
+      DATABRICKS_HTTP_PATH:
+        required: true
+      DATABRICKS_SCHEMA:
+        required: true
+      DATABRICKS_TOKEN:
+        required: true
 
 jobs:
   dbt:
@@ -56,10 +68,10 @@ jobs:
           dbt_transform:
             outputs:
               dev:
-                catalog: "{{ env_var('DBT_CATALOG') }}"
+                catalog: "{{ env_var('DATABRICKS_CATALOG') }}"
                 host: "{{ env_var('DATABRICKS_HOST') }}"
                 http_path: "{{ env_var('DATABRICKS_HTTP_PATH') }}"
-                schema: "{{ env_var('DBT_SCHEMA') }}"
+                schema: "{{ env_var('DATABRICKS_SCHEMA') }}"
                 threads: 6
                 token: "{{ env_var('DATABRICKS_TOKEN') }}"
                 type: databricks
