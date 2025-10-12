@@ -14,14 +14,6 @@ permissions:
 jobs:
   dbt:
     runs-on: ubuntu-latest
-    env:
-      DATABRICKS_CATALOG: ${{ secrets.DATABRICKS_CATALOG }}
-      DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
-      DATABRICKS_HTTP_PATH: ${{ secrets.DATABRICKS_HTTP_PATH }}
-      DATABRICKS_SCHEMA: ${{ secrets.DATABRICKS_SCHEMA }}
-      DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
-      PIP_CACHE_DIR: ~/.cache/pip
-
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -53,6 +45,12 @@ jobs:
           pip install -r requirements.txt
 
       - name: Generate profiles.yml
+        env:
+          DATABRICKS_CATALOG: ${{ secrets.DATABRICKS_CATALOG }}
+          DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+          DATABRICKS_HTTP_PATH: ${{ secrets.DATABRICKS_HTTP_PATH }}
+          DATABRICKS_SCHEMA: ${{ secrets.DATABRICKS_SCHEMA }}
+          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
         run: |
           source venv/bin/activate
           mkdir -p ~/.dbt
