@@ -44,7 +44,7 @@ jobs:
       - name: Cache
         uses: actions/cache@v4
         with:
-          path: ./.venv/
+          path: ./venv/
           key: ${{ runner.os }}-venv-${{ hashFiles('**/requirements*.txt') }}
           restore-keys: |
             ${{ runner.os }}-venv-
