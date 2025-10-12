@@ -20,7 +20,7 @@ jobs:
       DATABRICKS_HTTP_PATH: ${{ secrets.DATABRICKS_HTTP_PATH }}
       DATABRICKS_SCHEMA: ${{ secrets.DATABRICKS_SCHEMA }}
       DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
-      PIP_CACHE_DIR: /.cache/pip
+      PIP_CACHE_DIR: ${{ runner.temp }}/cache
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
