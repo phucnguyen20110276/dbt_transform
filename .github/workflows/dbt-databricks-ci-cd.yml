@@ -49,7 +49,6 @@ jobs:
         run: |
           source venv/bin/activate
           pip install dbt-core dbt-databricks
-          pip install -r requirements.txt
 
       - name: Run dbt build
         run: |
