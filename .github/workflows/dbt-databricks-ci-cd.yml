@@ -1,0 +1,78 @@
+name: dbt-databricks CI/CD
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  dbt:
+    runs-on: ubuntu-latest
+    env:
+      DATABRICKS_CATALOG: ${{ secrets.DATABRICKS_CATALOG }}
+      DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+      DATABRICKS_HTTP_PATH: ${{ secrets.DATABRICKS_HTTP_PATH }}
+      DATABRICKS_SCHEMA: ${{ secrets.DATABRICKS_SCHEMA }}
+      DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+      CACHE_PIP_DIR: ~/.cache/pip
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.PIP_CACHE_DIR }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Create virtual environment
+        run: |
+          echo "Creating Python virtual environment"
+          python3 -m venv venv
+          source venv/bin/activate
+          python3 -m pip install --upgrade pip
+
+      - name: Install dbt and dependencies
+        run: |
+          source venv/bin/activate
+          pip install dbt-core dbt-databricks
+          pip install -r requirements.txt
+
+      - name: Generate profiles.yml
+        run: |
+          source venv/bin/activate
+          mkdir -p ~/.dbt
+          cat > ~/.dbt/profiles.yml <<EOF
+          dbt_transform:
+            outputs:
+              dev:
+                catalog: "workspace"
+                host: dbc-b9c0f79b-0d7a.cloud.databricks.com
+                http_path: /sql/1.0/warehouses/a530dd632afc2dd0
+                schema: "tpch_analytics"
+                threads: 6
+                token: dapid353b2a92a131b3fbb952a4846324bae
+                type: databricks
+            target: dev
+          EOF
+
+      - name: Run dbt build
+        run: |
+          source venv/bin/activate
+          dbt build
+          echo "dbt-databricks build completed."
+
+      - name: Job summary
+        run: echo "dbt-databricks CI/CD completed successfully."
+              
+
