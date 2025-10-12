@@ -15,6 +15,11 @@ env:
   PYTHON_VERSION: '3.10'
   DAGSTER_CLOUD_FILE: 'dagster_cloud.yaml'
   DAGSTER_PROJECT_NAME: "dagster_orchestrate"
+  DATABRICKS_CATALOG: ${{ secrets.DATABRICKS_CATALOG }}
+  DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+  DATABRICKS_HTTP_PATH: ${{ secrets.DATABRICKS_HTTP_PATH }}
+  DATABRICKS_SCHEMA: ${{ secrets.DATABRICKS_SCHEMA }}
+  DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
 
 jobs:
   dagster_cloud_default_deploy:
