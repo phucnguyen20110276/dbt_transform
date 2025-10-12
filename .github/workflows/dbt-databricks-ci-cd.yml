@@ -15,6 +15,11 @@ jobs:
   dbt:
     runs-on: ubuntu-latest
     env:
+      DATABRICKS_CATALOG: ${{ secrets.DATABRICKS_CATALOG }}
+      DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+      DATABRICKS_HTTP_PATH: ${{ secrets.DATABRICKS_HTTP_PATH }}
+      DATABRICKS_SCHEMA: ${{ secrets.DATABRICKS_SCHEMA }}
+      DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
       PIP_CACHE_DIR: /.cache/pip
     steps:
       - name: Checkout repo
