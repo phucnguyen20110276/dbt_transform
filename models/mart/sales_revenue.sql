@@ -1,3 +1,6 @@
+-- depends_on: {{ ref('dim_customer') }}
+-- depends_on: {{ ref('fact_orders') }}
+
 with dim_customer as (
   select *
   from {{ ref('dim_customer') }}
