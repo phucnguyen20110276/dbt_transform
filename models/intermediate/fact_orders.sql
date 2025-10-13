@@ -1,3 +1,5 @@
+-- depends_on: {{ ref('stg_orders') }}
+
 {{
   config(
     materialized = 'incremental',
