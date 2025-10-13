@@ -16,6 +16,6 @@ select
   dc.nation_name,
   dc.region_name
 from dim_customer as dc
-left join fact_orders as fo on fo.customer_key = dc.customer_key
+join fact_orders as fo on fo.customer_key = dc.customer_key
 where order_date >= '1994-01-01'
 and order_date <= '1995-01-01'
