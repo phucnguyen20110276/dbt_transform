@@ -1,3 +1,7 @@
+-- depends_on: {{ ref('stg_customer') }}
+-- depends_on: {{ ref('stg_nation') }}
+-- depends_on: {{ ref('stg_region') }}
+
 with customer as (
   select *
   from {{ ref('stg_customer') }}
