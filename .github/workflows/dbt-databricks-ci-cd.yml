@@ -56,4 +56,5 @@ jobs:
       - name: Run dbt build
         run: |
           source venv/bin/activate
+          dbt deps
           dbt build
