@@ -3,9 +3,13 @@ name: dbt-databricks CI/CD
 on:
   push:
     branches:
-      - main
+      - "main"
+      - "dbt-databricks-developer"
     paths-ignore:
       - '**.md'
+  pull_request:
+    branches:
+      - "main"
 
 permissions:
   id-token: write
