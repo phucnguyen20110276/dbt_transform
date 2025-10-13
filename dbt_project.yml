@@ -40,3 +40,5 @@ models:
       mart:
         +materialized: table
 
+flags:
+  use_materialization_v2: True
