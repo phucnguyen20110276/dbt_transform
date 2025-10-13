@@ -4,5 +4,6 @@ with supplier as (
 )
 
 select
-  *
+  s_suppkey as supplier_key,
+  s_nationkey as nation_key
 from supplier
