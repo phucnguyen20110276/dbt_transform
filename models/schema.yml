@@ -73,6 +73,9 @@ models:
         description: "The status of the orders; O: Open, F: Filled, P: Pending"
         data_tests:
           - not_null
+          - accepted_values:
+              arguments:
+                values: ['O', 'F', 'P']
       - name: total_price
         description: "Total price of the order including all line items"
         data_tests:

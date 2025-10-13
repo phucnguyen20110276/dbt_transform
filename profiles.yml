@@ -1,11 +1,11 @@
 dbt_transform:
   outputs:
     dev:
-      catalog: "{{ env_var('DATABRICKS_CATALOG') }}"
-      host: "{{ env_var('DATABRICKS_HOST') }}"
-      http_path: "{{ env_var('DATABRICKS_HTTP_PATH') }}"
-      schema: "{{ env_var('DATABRICKS_SCHEMA') }}"
+      catalog: "workspace"
+      host: dbc-b9c0f79b-0d7a.cloud.databricks.com
+      http_path: /sql/1.0/warehouses/a530dd632afc2dd0
+      schema: "tpch_analytics"
       threads: 6
-      token: "{{ env_var('DATABRICKS_TOKEN') }}"
+      token: dapid353b2a92a131b3fbb952a4846324bae
       type: databricks
   target: dev
