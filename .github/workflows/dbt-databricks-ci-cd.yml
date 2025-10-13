@@ -3,12 +3,12 @@ name: dbt-databricks CI/CD
 on:
   push:
     branches:
-      - "main"
-    paths-ignore:
-      - '**.md'
-  pull_request:
-    branches:
-      - "main"
+      - "dev"
+
+concurrency:
+  # Cancel in-progress deploys to same branch
+  group: ${{ github.ref }}/dbt-databricks-ci-cd
+  cancel-in-progress: true
 
 permissions:
   id-token: write
