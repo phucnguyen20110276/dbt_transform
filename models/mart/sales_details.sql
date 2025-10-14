@@ -24,7 +24,7 @@ select
   fl.tax,
   fl.return_flag,
   fl.line_status,
-  datediff(day, fl.receipt_date, fl.ship_date) as ship_days
+  datediff(day, fl.receipt_date, fl.ship_date) as ship_days,
   case 
     when datediff(day, fl.receipt_date, fl.commit_date) < 0 then 0
     else datediff(day, fl.receipt_date, fl.commit_date)
