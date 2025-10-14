@@ -32,7 +32,7 @@ dim_customer as (
 
 select
   fps.part_key,
-  fps.supplier_ley,
+  fps.supplier_key,
   fps.available_quantity,
   fps.supply_cost,
   dp.manufacturer,
