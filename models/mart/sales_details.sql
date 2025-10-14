@@ -17,6 +17,7 @@ dim_customer as (
 
 select
   fl.lineitem_key,
+  fl.order_key,
   fl.quantity,
   fl.extended_price,
   fl.discount,
@@ -27,7 +28,10 @@ select
     when datediff(day, fl.ship_date, fl.commit_date) < 0 then 0
     else datediff(day, fl.ship_date, fl.commit_date)
   end as ship_delay_days,
-  fl.ship_mode
+  fl.ship_mode,
+  fo.order_status,
+  fo.total_price,
+  fo.order_date
 from fact_lineitem as fl
 join fact_orders as fo on fo.order_key = fl.order_key
 join dim_customer as dc on dc.customer_key = fo.customer_key
