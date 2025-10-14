@@ -19,7 +19,7 @@ select
   fl.return_flag,
   fl.line_status,
   datediff(day, fl.ship_date, fl.commit_date) as ship_time,
-  fl.ship_mode,
+  fl.ship_mode
 from fact_lineitem as fl
 join fact_orders as fo on fo.order_key = fl.order_key
 where fo.order_date >= '1994-01-01'
