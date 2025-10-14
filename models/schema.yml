@@ -73,7 +73,7 @@ models:
                 to: ref('stg_customer')
                 field: customer_key
       - name: order_status
-        description: "The status of the orders; O: Open, F: Filled, P: Pending"
+        description: "The status of the orders; O: Open, F: Finalized, P: Pending"
         data_tests:
           - not_null
           - accepted_values:
@@ -87,3 +87,152 @@ models:
         description: "Date of the order, formatted as YYYY-MM-DD"
         data_tests:
           - not_null
+
+  - name: stg_lineitem
+    description: "Individual line items within customer orders"
+    columns:
+      - name: order_key
+        description: "Foreign key reference to the parent order"
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_orders')
+                field: order_key
+      - name: part_key
+        description: "Foreign key reference to the partsupp table"
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_partsupp')
+                field: part_key
+      - name: supplier_key
+        description: "Foreign key reference to the partsupp table"
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_partsupp')
+                field: supplier_key
+      - name: line_number
+        description: "Line number within the order (starts at 1 for each order)"
+        data_tests:
+          - not_null
+      - name: quantity
+        description: "Quantity of items each line number"
+        data_tests:
+          - not_null
+      - name: extended_price
+        description: "Exetended price each line number"
+        data_tests:
+          - not_null
+      - name: discount
+        description: "Discount rate each line number"
+        data_tests:
+          - not_null
+      - name: tax
+        description: "Tax rate each line number"
+        data_tests:
+          - not_null
+      - name: return_flag
+        description: "Return status; R: Returned, A: Accepted, N: Not returned yet"
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['R', 'A', 'N']
+      - name: line_status
+        description: "Line status, O: Open, F: Finalized"
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['O', 'F']
+      - name: ship_date
+        description: "The date of starting shipping, formatted as YYYY-MM-DD"
+        data_tests:
+          - not_null
+      - name: commit_date
+        description: "The date of commmitting that orders have arrived, formatted as YYYY-MM-DD"
+        data_tests:
+          - not_null
+      - name: receipt_date
+        description: "The date of paying orders, formatted as YYYY-MM-DD"
+        data_tests:
+          - not_null
+      - name: ship_mode
+        description: "Delivery methods"
+        data_tests:
+          - not_null
+
+  - name: stg_partsupp
+    description: "Represents the relationship between parts and suppliers"
+    columns:
+      - name: part_key
+        description: "Foreign key reference to the part table"
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_part')
+                field: part_key
+      - name: supplier_key
+        description: "Foreign key reference to the supplier table"
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_supplier')
+                field: supplier_key
+      - name: available_quantity
+        description: "Quantity of the part available from the supplier"
+        data_tests:
+          - not_null
+      - name: supply_cost
+        description: "Cost per unit charged by the supplier"
+        data_tests:
+          - not_null
+
+  - name: stg_part
+    description: "Information about individual parts"
+    columns:
+      - name: part_key
+        description: "Unique identifier for each part"
+        data_tests:
+          - not_null
+          - unique
+      - name: manufacturer
+        description: "Manufacturer of the part"
+        data_tests:
+          - not_null
+      - name: brand
+        description: "Brand name of the part"
+        data_tests:
+          - not_null
+      - name: part_size
+        description: "Size of the part"
+        data_tests:
+          - not_null
+      - name: retail_price
+        description: "Retail price per unit"
+        data_tests:
+          - not_null
+
+  - name: stg_supplier
+    description: "Information about suppliers who provide parts"
+    columns:
+      - name: supplier_key
+        description: "Unique identifier for each supplier"
+        data_tests:
+          - not_null
+          - unique
+      - name: nation_key
+        description: "Foreign key reference to the supplier nationality"
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_nation')
+                field: nation_key
+

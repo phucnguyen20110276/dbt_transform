@@ -5,11 +5,6 @@ on:
     branches:
       - "dev"
 
-concurrency:
-  # Cancel in-progress deploys to same branch
-  group: ${{ github.ref }}/dbt-databricks-ci-cd
-  cancel-in-progress: true
-
 permissions:
   id-token: write
   contents: read
