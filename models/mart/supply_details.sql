@@ -31,10 +31,10 @@ dim_customer as (
 )
 
 select
-  fp.part_key,
-  fp.supplier_ley,
-  fp.available_quantity,
-  fp.supply_cost,
+  fps.part_key,
+  fps.supplier_ley,
+  fps.available_quantity,
+  fps.supply_cost,
   dp.manufacturer,
   dp.brand,
   dp.part_size,
