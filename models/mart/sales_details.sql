@@ -35,6 +35,6 @@ select
 from fact_lineitem as fl
 join fact_orders as fo on fo.order_key = fl.order_key
 join dim_customer as dc on dc.customer_key = fo.customer_key
-where region_name like "ASIA"
+where dc.customer_region like "ASIA"
 and fo.order_date >= '1994-01-01'
 and fo.order_date <= '1995-01-01'
