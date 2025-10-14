@@ -1,5 +1,6 @@
 -- depends_on: {{ ref('fact_lineitem') }}
 -- depends_on: {{ ref('fact_orders') }}
+-- depends_on: {{ ref('dim_customer') }}
 
 with fact_lineitem as (
   select *
@@ -8,6 +9,10 @@ with fact_lineitem as (
 fact_orders as (
   select *
   from {{ ref('fact_orders') }}
+),
+dim_customer as (
+  select *
+  from {{ ref('dim_customer') }}
 )
 
 select
@@ -25,5 +30,7 @@ select
   fl.ship_mode
 from fact_lineitem as fl
 join fact_orders as fo on fo.order_key = fl.order_key
-where fo.order_date >= '1994-01-01'
+join dim_customer as dc on dc.customer_key = fo.customer_key
+where region_name like "ASIA"
+and fo.order_date >= '1994-01-01'
 and fo.order_date <= '1995-01-01'
