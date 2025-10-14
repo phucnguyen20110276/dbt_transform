@@ -18,7 +18,10 @@ select
   fl.tax,
   fl.return_flag,
   fl.line_status,
-  datediff(day, fl.ship_date, fl.commit_date) as ship_time,
+  case 
+    when datediff(day, fl.commit_date, fl.ship_date) < 0 then 0
+    else datediff(day, fl.commit_date, fl.ship_date)
+  end as ship_delay_days
   fl.ship_mode
 from fact_lineitem as fl
 join fact_orders as fo on fo.order_key = fl.order_key
