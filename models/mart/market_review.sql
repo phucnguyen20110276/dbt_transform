@@ -12,14 +12,14 @@ fact_orders as (
 
 select
   fo.order_key,
+  fo.customer_key,
   fo.order_status,
   fo.total_price,
   fo.order_date,
-  dc.customer_key,
   dc.market_segmentation,
   dc.nation_name
-from dim_customer as dc
-join fact_orders as fo on fo.customer_key = dc.customer_key
-where region_name like "ASIA" 
+from fact_orders as fo
+join dim_customer as dc on dc.customer_key = fo.customer_key
+where region_name like "ASIA"
 and order_date >= '1994-01-01'
 and order_date <= '1995-01-01'
