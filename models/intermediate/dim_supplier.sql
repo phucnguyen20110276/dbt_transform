@@ -17,8 +17,8 @@ region as (
 
 select 
   s.supplier_key,
-  n.supplier_nation_name,
-  r.supplier_region_name
+  n.nation_name as supplier_nation,
+  r.region_name as supplier_region
 from supplier as s
 join nation as n on n.nation_key = s.nation_key
 join region as r on r.region_key = n.region_key
