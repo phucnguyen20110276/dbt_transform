@@ -31,6 +31,7 @@ dim_customer as (
 )
 
 select
+  fps.partsupp_key,
   fps.part_key,
   fps.supplier_key,
   fps.available_quantity,
