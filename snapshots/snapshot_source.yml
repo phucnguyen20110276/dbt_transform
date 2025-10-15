@@ -8,7 +8,7 @@ snapshots:
       updated_at: o_orderdate
       
   - name: scd_customer
-    relation: source('source', 'customer)
+    relation: source('source', 'customer')
     config:
       schema: tpch
       unique_key: c_custkey
