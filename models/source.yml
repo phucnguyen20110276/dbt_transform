@@ -1,8 +1,7 @@
----
 version: 2
 sources:
   - name: source
-    description: Data from application database, brought in by an EL process.
+    description: Data from application database, brought in by an EL process
     catalog: samples
     schema: tpch
     tables:
@@ -11,6 +10,6 @@ sources:
       - name: region
       - name: orders
       - name: lineitem
-      - name: partsupp
+      - name: partsupp  
       - name: part
       - name: supplier
