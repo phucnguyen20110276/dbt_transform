@@ -2,7 +2,7 @@ snapshots:
   - name: scd_orders
     relation: source('source', 'orders')
     config:
-      schema: tpch
+      schema: snapshot
       unique_key: o_orderkey
       strategy: timestamp
       updated_at: o_orderdate
@@ -10,7 +10,7 @@ snapshots:
   - name: scd_customer
     relation: source('source', 'customer')
     config:
-      schema: tpch
+      schema: snapshot
       unique_key: c_custkey
       strategy: check
       check_cols:
@@ -20,7 +20,7 @@ snapshots:
   - name: scd_lineitem
     relation: source('source', 'lineitem')
     config:
-      schema: tpch
+      schema: snapshot
       unique_key:
         - l_orderkey
         - l_linenumber
@@ -38,7 +38,7 @@ snapshots:
   - name: scd_partsupp
     relation: source('source', 'partsupp')
     config:
-      schema: tpch
+      schema: snapshot
       unique_key:
         - ps_partkey
         - ps_suppkey
@@ -50,7 +50,7 @@ snapshots:
   - name: scd_part
     relation: source('source', 'part')
     config:
-      schema: tpch
+      schema: snapshot
       unique_key: p_partkey
       strategy: check
       check_cols:
@@ -60,7 +60,7 @@ snapshots:
   - name: scd_supplier
     relation: source('source', 'supplier')
     config:
-      schema: tpch
+      schema: snapshot
       unique_key: s_suppkey
       strategy: check
       check_cols:
