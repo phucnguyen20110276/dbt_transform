@@ -24,10 +24,10 @@ select
   fl.tax,
   fl.return_flag,
   fl.line_status,
-  datediff(day, fl.receipt_date, fl.ship_date) as ship_days,
+  datediff(day, fl.ship_date, fl.receipt_date) as ship_days,
   case 
-    when datediff(day, fl.receipt_date, fl.commit_date) < 0 then 0
-    else datediff(day, fl.receipt_date, fl.commit_date)
+    when datediff(day, fl.commit_date, fl.receipt_date) < 0 then 0
+    else datediff(day, fl.commit_date, fl.receipt_date)
   end as ship_delay_days,
   fl.ship_mode,
   fo.order_status,
