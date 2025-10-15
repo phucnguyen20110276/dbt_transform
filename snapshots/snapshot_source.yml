@@ -3,7 +3,7 @@ snapshots:
     relation: source('source', 'orders')
     config:
       schema: tpch
-      unique_key: o_orderkkey
+      unique_key: o_orderkey
       strategy: timestamp
       updated_at: o_orderdate
       
