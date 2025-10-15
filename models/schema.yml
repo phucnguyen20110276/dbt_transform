@@ -383,7 +383,7 @@ models:
         description: "Date of the order, formatted as YYYY-MM-DD"
 
   - name: supply_details
-    description:
+    description: "Supply details in ASIA between 1994-01-01 and 1995-01-01"
     columns:
       - name: partsupp_key
         description: "Unique identifier for fact_partsupp table"
