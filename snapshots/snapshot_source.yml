@@ -1,0 +1,67 @@
+snapshots:
+  - name: scd_orders
+    relation: source('source', 'orders')
+    config:
+      schema: tpch
+      unique_key: o_orderkey
+      strategy: timestamp
+      updated_at: o_orderdate
+      
+  - name: scd_customer
+    relation: source('source', 'customer')
+    config:
+      schema: tpch
+      unique_key: c_custkey
+      strategy: check
+      check_cols:
+        - c_nationkey
+        - c_mktsegment
+
+  - name: scd_lineitem
+    relation: source('source', 'lineitem')
+    config:
+      schema: tpch
+      unique_key:
+        - l_orderkey
+        - l_linenumber
+      strategy: check
+      check_cols:
+        - l_quantity
+        - l_extendedprice
+        - l_discount
+        - l_tax
+        - l_shipdate
+        - l_commitdate
+        - l_receiptdate
+        - l_shipmode
+
+  - name: scd_partsupp
+    relation: source('source', 'partsupp')
+    config:
+      schema: tpch
+      unique_key:
+        - ps_partkey
+        - ps_suppkey
+      strategy: check
+      check_cols:
+        - ps_availqty
+        - ps_supplycost
+        
+  - name: scd_part
+    relation: source('source', 'part')
+    config:
+      schema: tpch
+      unique_key: p_partkey
+      strategy: check
+      check_cols:
+        - p_mfgr
+        - p_brand
+
+  - name: scd_supplier
+    relation: source('source', 'supplier')
+    config:
+      schema: tpch
+      unique_key: s_suppkey
+      strategy: check
+      check_cols:
+        - s_nationkey
