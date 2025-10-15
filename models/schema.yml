@@ -236,3 +236,172 @@ models:
                 to: ref('stg_nation')
                 field: nation_key
 
+  - name: dim_customer
+    descripsion: "Dimension table of customer"
+    columns:
+      - name: customer_key
+        description: "Unique identifier for each customer"
+      - name: market_segmentation
+        description: "Customer market segmentation"
+      - name: customer_nation
+        description: "Name of customer's nation/country"
+      - name: customer_region
+        description: "Name of customer's region"
+
+  - name: dim_part
+    description: "Dimension table of parts"
+    columns:
+      - name: part_key
+        description: "Unique identifier for each part"
+      - name: manufacturer
+        description: "Manufacturer of the part"
+      - name: brand
+        description: "Brand name of the part"
+      - name: part_size
+        description: "Size of the part"
+      - name: retail_price
+        description: "Retail price per unit"
+
+  - name: dim_supplier
+    description: "Information about suppliers who provide parts"
+    columns:
+      - name: supplier_key
+        description: "Unique identifier for each supplier"
+      - name: supplier_nation
+        description: "Name of supplier's nation/country"
+      - name: supplier_region
+        description: "Name of supplier's region"
+
+  - name: fact_partsupp
+    description: "Fact table of parts and suppliers"
+    columns:
+      - name: partsupp_key
+        description: "Unique identifier for each partsupp"
+      - name: part_key
+        description: "Foreign key reference to the dim_part table"
+      - name: supplier_key
+        description: "Foreign key reference to the supplier table"
+      - name: available_quantity
+        description: "Quantity of the part available from the supplier"
+      - name: supply_cost
+        description: "Cost per unit charged by the supplier"
+
+  - name: fact_lineitem
+    description: "Fact table for line item"
+    columns:
+      - name: lineitem_key
+        description: "Unique identifier for each line item"
+      - name: order_key
+        description: "Foreign key reference to the fact_orders table"
+      - name: part_key
+        description: "Foreign key reference to the fact_partsupp table"
+      - name: supplier_key
+        description: "Foreign key reference to the fact_partsupp table"
+      - name: quantity
+        description: "Quantity of items each line number"
+      - name: extended_price
+        description: "Exetended price each line number"
+      - name: discount
+        description: "Discount rate each line number"
+      - name: tax
+        description: "Tax rate each line number"
+      - name: return_flag
+        description: "Return status; R: Returned, A: Accepted, N: Not returned yet"
+      - name: line_status
+        description: "Line status, O: Open, F: Finalized"
+      - name: ship_date
+        description: "The date of starting shipping, formatted as YYYY-MM-DD"
+      - name: commit_date
+        description: "The date of commmitting that orders have arrived, formatted as YYYY-MM-DD"
+      - name: receipt_date
+        description: "The date of paying orders, formatted as YYYY-MM-DD"
+      - name: ship_mode
+        description: "Delivery methods"
+
+  - name: fact_orders
+    description: "Fact table of orders"
+    columns:
+      - name: order_key
+        description: "Unique identifier for each order"
+      - name: customer_key
+        description: "Foreign key reference to the customer who placed the order"
+      - name: order_status
+        description: "The status of the orders; O: Open, F: Finalized, P: Pending"
+      - name: total_price
+        description: "Total price of the order including all line items"
+      - name: order_date
+        description: "Date of the order, formatted as YYYY-MM-DD"
+
+  - name: market_consumption
+    description: "Market consumption in ASIA between 1994-01-01 and 1995-01-01"
+    columns:
+      - name: order_key
+        description: "Unique identifier for each order"
+      - name: customer_key
+        description: "Unique identifier for each customer"
+      - name: order_status
+        description: "The status of the orders; O: Open, F: Finalized, P: Pending"
+      - name: total_price
+        description: "Total price of the order including all line items"
+      - name: order_date
+        description: "Date of the order, formatted as YYYY-MM-DD"
+      - name: market_segmentation
+        description: "Customer market segmentation"
+      - name: customer_nation
+        description: "Name of customer's nation/country"
+
+  - name: sales_details
+    description: "Sales details in ASIA between 1994-01-01 and 1995-01-01"
+    columns:
+      - name: lineitem_key
+        description: "Unique identifier for each line item"
+      - name: order_key
+        description: "Unique identifier for each order"
+      - name: quantity
+        description: "Quantity of items each line number"
+      - name: extended_price
+        description: "Exetended price each line number"
+      - name: discount
+        description: "Discount rate each line number"
+      - name: tax
+        description: "Tax rate each line number"
+      - name: return_flag
+        description: "Return status; R: Returned, A: Accepted, N: Not returned yet"
+      - name: line_status
+        description: "Line status, O: Open, F: Finalized"
+      - name: ship_days
+        description: "Time of shipping (days)"
+      - name: ship_delay_days
+        description: "Time of shipping delay (days)"
+      - name: ship_mode
+        description: "Delivery methods"
+      - name: order_status
+        description: "The status of the orders; O: Open, F: Finalized, P: Pending"
+      - name: total_price
+        description: "Total price of the order including all line items"
+      - name: order_date
+        description: "Date of the order, formatted as YYYY-MM-DD"
+
+  - name: supply_details
+    description: "Supply details in ASIA between 1994-01-01 and 1995-01-01"
+    columns:
+      - name: partsupp_key
+        description: "Unique identifier for fact_partsupp table"
+      - name: part_key
+        description: "Unique identifier for each part"
+      - name: supplier_key
+        description: "Unique identifier for each supplier"
+      - name: available_quantity
+        description: "Quantity of the part available from the supplier"
+      - name: supply_cost
+        description: "Cost per unit charged by the supplier"
+      - name: manufacturer
+        description: "Manufacturer of the part"
+      - name: brand
+        description: "Brand name of the part"
+      - name: part_size
+        description: "Size of the part"
+      - name: retail_price
+        description: "Retail price per unit"
+      - name: supplier_nation
+        description: "Name of supplier's nation/country"
