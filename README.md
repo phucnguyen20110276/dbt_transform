@@ -1,10 +1,13 @@
-Welcome to your new dbt project!
+### DATA ENGINEERING PROJECT WITH DBT
 
-### Using the starter project
+## WORKFLOW
+<img src="images/workflow.png" width="700" />
 
-Try running the following commands:
-- dbt run
-- dbt test
+## DATASET
+<img src="images/tpch_schema.png" width="700" />
+
+## DATA PIPELINE
+<img src="images/oipeline.png" width="700" />
 
 
 ### Resources:
