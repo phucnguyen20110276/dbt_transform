@@ -4,7 +4,7 @@
 <img src="images/workflow.png" width="700" />
 
 ## DATASET
-<img src="images/tpch_schema.png" width="700" />
+<img src="images/tpch_schema_sample.png" width="700" />
 
 ## DATA PIPELINE
 <img src="images/pipeline.png" width="700" />
