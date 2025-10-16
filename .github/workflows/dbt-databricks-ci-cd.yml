@@ -53,3 +53,4 @@ jobs:
           dbt deps
           dbt compile
           dbt build
+          dbt docs generate
