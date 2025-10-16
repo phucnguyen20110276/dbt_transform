@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - "dev"
+    paths-ignore:
+      - "images/**"
+      - "docs/**"
+      - "README.md"
 
 permissions:
   id-token: write
