@@ -6,6 +6,7 @@ on:
       - "dev"
     paths-ignore:
       - "images/**"
+      - "docs/**"
       - "README.md"
 
 permissions:
