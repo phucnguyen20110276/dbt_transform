@@ -1,0 +1,17 @@
+exposures:
+  - name: executive_dashboard
+    label: Asian Market Analysis
+    type: dashboard
+    maturity: low
+    url: https://ebfb9c90.us1a.app.preset.io/superset/dashboard/8/?native_filters_key=IH1ARsMxITcceU7Ts5iPi-RIHnNgh_e4sFKSXXxS_5TKuI3SptvG-_LQWGKfzBiU
+    description: Executive Dashboard about Asian Market between 1994-01-01 and 1995-01-01
+      
+
+    depends_on:
+      - ref('market_comsumption')
+      - ref('sales_details')
+      - ref('supply_details')
+
+    owner:
+      name: dbt-learner
+      email: casptoneproject@gmail.com
