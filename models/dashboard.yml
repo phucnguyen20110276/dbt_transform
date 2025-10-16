@@ -8,7 +8,7 @@ exposures:
       
 
     depends_on:
-      - ref('market_comsumption')
+      - ref('market_consumption')
       - ref('sales_details')
       - ref('supply_details')
 
