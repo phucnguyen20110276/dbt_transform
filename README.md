@@ -7,7 +7,7 @@
 <img src="images/tpch_schema.png" width="700" />
 
 ## DATA PIPELINE
-<img src="images/oipeline.png" width="700" />
+<img src="images/pipeline.png" width="700" />
 
 
 ### Resources:
