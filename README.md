@@ -3,7 +3,7 @@
 ## WORKFLOW
 <img src="images/workflow.png" width="700" />
 
-## DATASET
+## SAMPLE DATASET
 <img src="images/tpch_schema_sample.png" width="700" />
 
 ## DATA PIPELINE
