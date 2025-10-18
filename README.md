@@ -9,6 +9,9 @@
 ## DATA PIPELINE
 <img src="images/pipeline.png" width="700" />
 
+## DASHBOARD
+[Dasboard with Preset](images/Asian_Market_Analysis.pdf)
+
 ## Resources
 - Learn more about Data Build Tool (dbt): https://docs.getdbt.com/docs/introduction
 - Learn more about Github Action: https://docs.github.com/fr/actions
